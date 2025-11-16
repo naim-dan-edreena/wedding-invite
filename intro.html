@@ -10,10 +10,10 @@
     margin: 0;
     overflow: hidden;
     font-family: "Playfair Display", serif;
-    background: url("wallpaper.png") center / cover no-repeat fixed;
+    background: url("wallpaper.png") center/cover no-repeat fixed;
   }
 
-  /* CENTER BOX */
+  /* CENTER CONTENT */
   .center-box {
     position: absolute;
     top: 50%;
@@ -37,6 +37,7 @@
 
   .amp {
     color: #7f8fb8;
+    padding: 0 10px;
   }
 
   .center-box button {
@@ -54,32 +55,44 @@
     transition: 0.2s;
   }
 
-  /* ==========================
-       DOOR PANELS
-     ========================== */
+  .center-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 32px rgba(85,98,134,0.55);
+  }
+
+  /* ==== DOOR PANELS ==== */
   .door {
     position: fixed;
     top: 0;
     width: 50%;
     height: 100vh;
-    transform: translateX(0);         /* <-- IMPORTANT */
+    transform: translateX(0); /* default closed */
     z-index: 9998;
     transition: transform 1.4s ease-in-out;
+
+    /* Soft elegant door look */
     background: #e7ebf5;
-    box-shadow: 0 0 40px rgba(0,0,0,0.15) inset;
     background-image:
       linear-gradient(
-        rgba(240,244,255,0.88),
-        rgba(222,229,245,0.88)
+        rgba(240,244,255,0.92),
+        rgba(225,232,247,0.92)
       ),
       url("flowertexture.png");
     background-size: cover;
     background-position: center;
+
+    /* Soft inner shadow for depth */
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.18);
+
+    /* GOLD trims */
+    border-left: 3px solid rgba(208,175,109,0.75);
+    border-right: 3px solid rgba(208,175,109,0.75);
   }
 
   #leftDoor {
     left: 0;
   }
+
   #rightDoor {
     right: 0;
   }
@@ -88,6 +101,7 @@
   .open-left {
     transform: translateX(-100%);
   }
+
   .open-right {
     transform: translateX(100%);
   }
@@ -96,44 +110,40 @@
 
 <body>
 
-<!-- DOORS -->
+<!-- DOOR PANELS -->
 <div id="leftDoor" class="door"></div>
 <div id="rightDoor" class="door"></div>
 
 <!-- CENTER CONTENT -->
 <div class="center-box">
   <h2>Walimatulurus</h2>
-  <h1>Haziq <span class="amp">&amp;</span> Aina</h1>
+
+  <h1>
+    Haziq <span class="amp">&amp;</span> Aina
+  </h1>
 
   <div style="margin-top:10px; font-size:1rem; letter-spacing:0.22em; color:#6e7590;">
     29 November 2025
   </div>
 
   <div style="margin-top:18px; font-size:1.4rem;">
-    بِسْمِ اللهِ الرَّحْمَـٰنِ الرَّحِيمِ
+    بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
   </div>
 
   <button id="openBtn">Buka Jemputan</button>
 </div>
 
 <script>
-  const left = document.getElementById("leftDoor");
-  const right = document.getElementById("rightDoor");
-
   document.getElementById("openBtn").onclick = function () {
 
-    // force browser repaint so animation will trigger
-    void left.offsetWidth;
-    void right.offsetWidth;
+    // DOOR ANIMATION
+    document.getElementById("leftDoor").classList.add("open-left");
+    document.getElementById("rightDoor").classList.add("open-right");
 
-    // play door animation
-    left.classList.add("open-left");
-    right.classList.add("open-right");
-
-    // WAIT for door animation to finish BEFORE notifying parent
+    // AFTER animation finishes → notify main page
     setTimeout(() => {
       window.parent.postMessage("OPEN_INVITATION", "*");
-    }, 1500);  // matches 1.4s animation
+    }, 1500); // 1.5s = slightly longer than door animation
   };
 </script>
 
