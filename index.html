@@ -575,6 +575,12 @@
 </head>
 <body style="overflow:hidden;">
   <!-- LOAD INTRO AS SEPARATE PAGE -->
+    <script>
+    window.addEventListener("load", () => {
+      document.body.style.overflow = "hidden";
+    });
+  </script>
+
 <iframe 
   id="introFrame" 
   src="intro.html" 
