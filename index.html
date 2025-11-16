@@ -797,47 +797,86 @@
       margin-bottom: 1rem;
     }
 
-    .envelope {
-      position: relative;
-      width: 100%;
-      padding-top: 65%;
-      margin: 0 auto 1.4rem;
-      filter: drop-shadow(0 18px 40px rgba(69, 49, 30, 0.55));
-    }
+   /* ENVELOPE FIXED DESIGN */
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  margin: 0 auto 1.4rem;
+  filter: drop-shadow(0 18px 40px rgba(69, 49, 30, 0.45));
+}
 
-    .envelope-base {
-      position: absolute;
-      inset: 20% 8% 0 8%;
-      background: #f8f1e6;
-      border-radius: 0 0 18px 18px;
-      border: 1px solid rgba(155, 130, 98, 0.6);
-    }
+.envelope-base {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: #f8f1e6;
+  border-radius: 0 0 14px 14px;
+  border: 1px solid rgba(155,130,98,0.5);
+  overflow: hidden;
+}
 
-    .envelope-flap {
-      position: absolute;
-      top: 0;
-      left: 8%;
-      right: 8%;
-      height: 60%;
-      background: linear-gradient(135deg, #f4e4cf, #e5cfb1);
-      clip-path: polygon(0 0, 50% 100%, 100% 0);
-      border: 1px solid rgba(155, 130, 98, 0.7);
-      transform-origin: top center;
-      transition: transform 0.8s ease;
-      z-index: 2;
-    }
+.envelope-base::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: white;
+  border-radius: 12px;
+}
 
-    .envelope-front {
-      position: absolute;
-      inset: 20% 8% 0 8%;
-      background: linear-gradient(135deg, #faefe1, #f4e2cf);
-      border-radius: 0 0 18px 18px;
-      border: 1px solid rgba(155, 130, 98, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-    }
+.envelope-message {
+  position: absolute;
+  top: 32%;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+  font-size: 0.9rem;
+  color: #6b5846;
+  z-index: 2;
+}
+
+/* FLAP FIXED */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  /* clean triangle flap */
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-bottom: 120px solid #f1e3d0;
+  
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 3;
+  border-radius: 6px;
+  border-bottom-color: #e7d5bf;
+}
+
+.envelope-overlay.opening .envelope-flap {
+  transform: rotateX(-180deg);
+}
+
+/* FRONT PIECE (the little lip) */
+.envelope-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: #faefe1;
+  border-radius: 0 0 14px 14px;
+  border: 1px solid rgba(155,130,98,0.4);
+  z-index: 1;
+}
+
 
     .envelope-text-inner {
       padding: 0.6rem 1rem;
@@ -961,15 +1000,19 @@
       <div class="envelope-title">UNDANGAN MAJLIS WALIMATUL URUS</div>
       <div class="envelope-names">Haziq &amp; Aina</div>
 
-      <div class="envelope">
-        <div class="envelope-base"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-front">
-          <div class="envelope-text-inner">
-            Dengan penuh rasa syukur, kami menjemput Dato’/Datin/Tuan/Puan/
-            Encik/Cik untuk membuka kad jemputan majlis walimatul urus kami.
-          </div>
-        </div>
+  <div class="envelope">
+  <div class="envelope-flap"></div>
+
+  <div class="envelope-base">
+    <div class="envelope-message">
+      Dengan penuh rasa syukur, kami menjemput Dato’/Datin/Tuan/Puan/
+      Encik/Cik untuk membuka kad jemputan majlis walimatul urus kami.
+    </div>
+  </div>
+
+  <div class="envelope-front"></div>
+</div>
+
         <div class="envelope-petals">
           <span>❀</span>
           <span>✿</span>
