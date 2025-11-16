@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Opening</title>
+<title>Pembuka Jemputan</title>
 
 <style>
   body {
@@ -13,7 +13,7 @@
     background: url("wallpaper.png") center/cover no-repeat fixed;
   }
 
-  /* CENTER CONTENT */
+  /* ==== CENTER CONTENT ==== */
   .center-box {
     position: absolute;
     top: 50%;
@@ -60,25 +60,52 @@
     box-shadow: 0 16px 32px rgba(85,98,134,0.55);
   }
 
-  /* ==== DOOR PANELS ==== */
- .door {
-position: fixed; top: 0; width: 50%; height: 100vh; z-index: 9998; transition: transform 1.4s ease-in-out; /* ADD VISIBLE DOOR STYLING */ background: linear-gradient( 180deg, rgba(240,244,255,0.92), rgba(222,229,245,0.92) ); background: #e7ebf5; /* soft grey-blue door color */ box-shadow: 0 0 40px rgba(0,0,0,0.15) inset; /* make visible */
-#leftDoor {
-  left: 0;
-  border-right: 2px solid rgba(120,130,150,0.4); /* visible centre line */
-}
+  /* ==== DOORS (Left + Right) ==== */
+  .door {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    z-index: 9998;
+    transition: transform 1.4s ease-in-out;
 
-#rightDoor {
-  right: 0;
-  border-left: 2px solid rgba(120,130,150,0.4);
-}
+    /* SOLID DOOR BACKGROUND */
+    background-color: #e7ebf5;
 
+    /* OPTIONAL FLORAL TEXTURE */
+    background-image:
+      url("flowertexture.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Soft depth shading */
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.18);
+  }
+
+  #leftDoor {
+    left: 0;
+    border-right: 2px solid rgba(120,130,150,0.4);
+  }
+
+  #rightDoor {
+    right: 0;
+    border-left: 2px solid rgba(120,130,150,0.4);
+  }
+
+  /* Opening classes */
+  .open-left {
+    transform: translateX(-100%);
+  }
+  .open-right {
+    transform: translateX(100%);
+  }
 </style>
 </head>
 
 <body>
 
-<!-- LEFT & RIGHT DOORS -->
+<!-- DOORS -->
 <div id="leftDoor" class="door"></div>
 <div id="rightDoor" class="door"></div>
 
@@ -103,15 +130,14 @@ position: fixed; top: 0; width: 50%; height: 100vh; z-index: 9998; transition: t
 
 <script>
   document.getElementById("openBtn").onclick = function () {
-
-    // Open both doors
+    // Open animation
     document.getElementById("leftDoor").classList.add("open-left");
     document.getElementById("rightDoor").classList.add("open-right");
 
-    // Wait until animation finished
+    // After animation finishes → tell index.html to start
     setTimeout(() => {
       window.parent.postMessage("OPEN_INVITATION", "*");
-    }, 1500);
+    }, 1400);
   };
 </script>
 
