@@ -61,7 +61,7 @@
     box-shadow: 0 16px 32px rgba(85,98,134,0.55);
   }
 
-  /* ==== DOOR PANELS ==== */
+  /* DOOR PANELS */
   .door {
     position: fixed;
     top: 0;
@@ -70,7 +70,6 @@
     z-index: 9998;
     transition: transform 1.4s ease-in-out;
 
-    /* Visible aesthetic door design */
     background-image:
       linear-gradient(
         rgba(240,244,255,0.88),
@@ -83,6 +82,9 @@
 
     box-shadow: inset 0 0 40px rgba(0,0,0,0.15);
     backdrop-filter: blur(6px);
+
+    /* FORCE initial state */
+    transform: translateX(0);
   }
 
   #leftDoor {
@@ -95,29 +97,25 @@
     border-left: 1px solid rgba(160,168,190,0.65);
   }
 
-  /* DOOR OPEN ANIMATION */
+  /* OPEN ANIMATION */
   .open-left {
     transform: translateX(-100%);
   }
   .open-right {
     transform: translateX(100%);
   }
+
 </style>
 </head>
 
 <body>
 
-<!-- DOOR PANELS -->
 <div id="leftDoor" class="door"></div>
 <div id="rightDoor" class="door"></div>
 
-<!-- CENTER CONTENT -->
 <div class="center-box">
   <h2>Walimatulurus</h2>
-
-  <h1>
-    Haziq <span class="amp">&amp;</span> Aina
-  </h1>
+  <h1>Haziq <span class="amp">&amp;</span> Aina</h1>
 
   <div style="margin-top:10px; font-size:1rem; letter-spacing:0.22em; color:#6e7590;">
     29 November 2025
@@ -131,15 +129,20 @@
 </div>
 
 <script>
+  const left = document.getElementById("leftDoor");
+  const right = document.getElementById("rightDoor");
+
   document.getElementById("openBtn").onclick = function () {
 
-    // Delay ensures doors render before animating (fixes instant jump)
-    setTimeout(() => {
-      document.getElementById("leftDoor").classList.add("open-left");
-      document.getElementById("rightDoor").classList.add("open-right");
-    }, 50);
+    // 🔥 FORCE repaint so animation always works
+    void left.offsetWidth;
+    void right.offsetWidth;
 
-    // Trigger index.html to continue after animation ends
+    // 🔥 Now animate doors
+    left.classList.add("open-left");
+    right.classList.add("open-right");
+
+    // 🔥 After animation → tell index.html to continue
     setTimeout(() => {
       window.parent.postMessage("OPEN_INVITATION", "*");
     }, 1500);
