@@ -1,278 +1,297 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<title>Walimatul Urus – Haziq & Aina</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Walimatul Urus – Haziq & Aina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Google Fonts -->test
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root {
+      --bg-main: #f4f6fb;
+      --bg-card: #ffffff;
+      --blue-deep: #53617f;
+      --grey-soft: #f1f2f6;
+      --grey-text: #4b4f57;
+      --accent: #d6bfa3;
+      --shadow-soft: 0 18px 40px rgba(41, 53, 84, 0.15);
+    }
 
-:root {
-  --soft-blue: #cfd9e8;
-  --deep-blue: #5a6c8f;
-  --beige: #f6f1eb;
-  --gold: #c8b28a;
-  --card-bg: #ffffff;
-}
+    * { box-sizing: border-box; scroll-behavior: smooth; }
 
-/* GLOBAL */
-body {
-  margin: 0;
-  background: linear-gradient(135deg, #fdfdfd, #eef2f6);
-  font-family: "Poppins", sans-serif;
-  color: #444;
-  line-height: 1.7;
-}
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f5f6fb;
+      color: var(--grey-text);
+    }
 
-section {
-  padding: 3rem 1.5rem;
-  max-width: 900px;
-  margin: auto;
-}
+    h1,h2,h3 {
+      font-family: "Playfair Display", serif;
+    }
 
-/* HEADING */
-h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+    section {
+      padding: 4rem 1.4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-/* CARD */
-.card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-  border: 1px solid rgba(200,180,150,0.35);
-}
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .hero-card {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #cbd6ea;
+    }
 
-/* MUSIC BUTTON */
-#musicBtn {
-  position: fixed;
-  right: 20px;
-  bottom: 90px;
-  width: 55px;
-  height: 55px;
-  border-radius: 100%;
-  background: #5a6c8f;
-  color: white;
-  border: none;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  cursor: pointer;
-  z-index: 1000;
-}
+    .hero-subtitle {
+      font-size: .8rem;
+      letter-spacing: .2em;
+      color: #6a748b;
+    }
 
-/* WISHES MARQUEE AREA */
-.guestbook-strip {
-  margin-top: 2rem;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  padding: 25px 0;
-}
+    .hero-names {
+      font-size: 2.7rem;
+      color: #37415b;
+    }
 
-.marquee {
-  display: flex;
-  white-space: nowrap;
-  animation: scrollLeft 38s linear infinite;
-}
+    .hero-amp { color: var(--accent); }
 
-@keyframes scrollLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+    .hero-btn {
+      margin-top: 1.5rem;
+      padding: .8rem 2rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--blue-deep);
+      color: white;
+      cursor: pointer;
+      font-size: .9rem;
+      letter-spacing: .14em;
+    }
 
-.marquee-content {
-  display: flex;
-  gap: 2rem;
-}
+    /* CARD */
+    .card {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #cbd6ea;
+      margin-bottom: 2rem;
+    }
 
-/* AESTHETIC FLORAL WISH CARD */
-.wish-item {
-  min-width: 320px;
-  max-width: 360px;
-  background: url('https://i.imgur.com/x0W8p0B.png'), #ffffff; 
-  background-size: cover;
-  background-blend-mode: soft-light;
-  border-radius: 22px;
-  padding: 22px 26px;
-  border: 1px solid rgba(200,180,150,0.55);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  font-family: "Playfair Display", serif;
-}
+    .section-title {
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
 
-.wish-message {
-  font-size: 1.05rem;
-  color: #3c3c3c;
-  line-height: 1.55;
-}
+    /* WISHES */
+    .wishes-list {
+      max-height: 260px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
 
-.wish-name {
-  margin-top: 12px;
-  text-align: right;
-  font-family: "Dancing Script", cursive;
-  font-size: 1.1rem;
-  color: #6a6a6a;
-}
+    .wish-item {
+      background: #f0f3fa;
+      padding: .8rem 1rem;
+      border-radius: 14px;
+      margin-bottom: .7rem;
+      border: 1px solid #d0d8e8;
+    }
 
-/* FORM */
-input, textarea, select {
-  width: 100%;
-  padding: 0.7rem 1rem;
-  border-radius: 14px;
-  border: 1px solid #d6d6d6;
-  background: #fafafa;
-  font-size: 0.95rem;
-  margin-bottom: 0.7rem;
-}
+    .wish-item strong { color: #364159; }
 
-button[type="submit"] {
-  padding: 0.7rem 1.5rem;
-  border-radius: 14px;
-  background: #5a6c8f;
-  color: white;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0.5rem;
-}
+    /* MUSIC BUTTON */
+    .music-btn {
+      position: fixed;
+      bottom: 70px;
+      right: 15px;
+      background: var(--blue-deep);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      z-index: 999;
+    }
 
-/* TOAST */
-.toast {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 20px;
-  border-radius: 30px;
-  background: white;
-  border: 1px solid #dcdcdc;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  opacity: 0;
-  transition: 0.2s;
-  z-index: 2000;
-}
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(5px);
-}
+    .toast {
+      position: fixed;
+      top: 15px; left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: .7rem 1.2rem;
+      border-radius: 999px;
+      color: #37415b;
+      border: 1px solid #cbd6ea;
+      box-shadow: var(--shadow-soft);
+      opacity: 0;
+      transition: .2s;
+      z-index: 999;
+    }
 
-</style>
+    .toast.show { opacity: 1; }
+  </style>
 </head>
 
 <body>
 
-<!-- MUSIC BUTTON -->
-<button id="musicBtn">🎵</button>
-<audio id="bgMusic" src="weddingsong.mp3" loop></audio>
+  <!-- MUSIC -->
+  <audio id="bgMusic" loop>
+    <source src="weddingsong.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicBtn" class="music-btn">🔇 Music Off</button>
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
+  <div id="toast" class="toast"></div>
 
-<!-- HERO -->
-<section>
-  <h2>Haziq & Aina</h2>
-  <p style="text-align:center;">Dengan penuh kesyukuran, kami menjemput anda ke majlis walimatul urus.</p>
-</section>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-card">
+      <div class="hero-subtitle">UNDANGAN MAJLIS WALIMATUL URUS</div>
 
-<!-- WISH SECTION -->
-<section id="wish">
-  <div class="card">
-    <h2>Titipan Ucapan</h2>
-    <p style="text-align:center;">Ucapan penuh bermakna daripada para tetamu 💌</p>
+      <h1 class="hero-names">Haziq <span class="hero-amp">&amp;</span> Aina</h1>
 
-    <form id="wishForm">
-      <input type="text" id="wishName" placeholder="Nama" required>
-      <textarea id="wishMessage" placeholder="Ucapan" required></textarea>
-      <button type="submit">Hantar Ucapan</button>
-    </form>
+      <p>29 November 2025</p>
+      <p>Dengan penuh kesyukuran kami menjemput anda ke majlis bahagia kami.</p>
 
-    <!-- AUTO SCROLL -->
-    <div class="guestbook-strip">
-      <div class="marquee">
-        <div class="marquee-content" id="wishesList"></div>
-        <div class="marquee-content" id="wishesClone"></div>
-      </div>
+      <button class="hero-btn" onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'})">
+        Buka Jemputan
+      </button>
     </div>
-  </div>
-</section>
+  </section>
 
-<script>
-// CONFIG
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRep80DpJmbi2jmwyu1RgEeenR2B-6mReb5tgPn36wRh5r2bo-1XDQrF4Jf3saUgTOLA/exec";
+  <!-- DETAILS -->
+  <section id="details">
+    <div class="card">
+      <div class="section-title">
+        <h2>Butiran Majlis</h2>
+      </div>
+      <p><strong>Tarikh:</strong> 29 November 2025</p>
+      <p><strong>Masa:</strong> 11.00 pagi – 4.00 petang</p>
+      <p><strong>Lokasi:</strong> Felda Palong 2, Gemas</p>
+    </div>
+  </section>
 
-// TOAST
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  setTimeout(()=> t.classList.remove("show"), 2500);
-}
+  <!-- WISH -->
+  <section id="wish">
+    <div class="card">
+      <div class="section-title"><h2>Guest Book</h2></div>
 
-// MUSIC
-const music = document.getElementById("bgMusic");
-document.getElementById("musicBtn").onclick = ()=>{
-  if (music.paused){ music.play(); }
-  else { music.pause(); }
-};
+      <form id="wishForm">
+        <input type="text" id="wishName" placeholder="Nama" required>
+        <textarea id="wishMessage" placeholder="Ucapan" required></textarea>
+        <button type="submit">Hantar Ucapan</button>
+      </form>
 
-// LOAD WISHES
-async function loadWishes() {
-  try {
-    const res = await fetch(SCRIPT_URL + "?mode=get");
-    const data = await res.json();
-    if (data.status !== "success") return;
+      <div id="wishesList" class="wishes-list"></div>
+    </div>
+  </section>
 
-    data.wishes.forEach(w => {
-      addWishToDOM(w.name, w.message);
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="card">
+      <div class="section-title"><h2>RSVP Kehadiran</h2></div>
+
+      <form id="rsvpForm">
+        <input type="text" id="rsvpName" placeholder="Nama" required>
+        <input type="number" id="rsvpPax" value="1" min="1">
+        <select id="rsvpStatus" required>
+          <option value="">Pilih</option>
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak Hadir">Tidak Hadir</option>
+        </select>
+        <input type="text" id="rsvpRemark" placeholder="Catatan">
+        <button type="submit">Hantar RSVP</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // GOOGLE SCRIPT URL  
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRep80DpJmbi2jmwyu1RgEeenR2B-6mReb5tgPn36wRh5r2bo-1XDQrF4Jf3saUgTOLA/exec";
+
+    // MUSIC
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    bgMusic.volume = 0.7; bgMusic.muted = true;
+    bgMusic.play().catch(()=>{});
+
+    musicBtn.onclick = () => {
+      bgMusic.muted = !bgMusic.muted;
+      musicBtn.textContent = bgMusic.muted ? "🔇 Music Off" : "🔊 Music On";
+    };
+
+    // TOAST
+    function showToast(msg){
+      const t=document.getElementById("toast");
+      t.textContent=msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"),2000);
+    }
+
+    // LOAD WISHES (GET)
+    async function loadWishes(){
+      try {
+        const res = await fetch(SCRIPT_URL+"?mode=wish");
+        const data = await res.json();
+
+        const list = document.getElementById("wishesList");
+        list.innerHTML = "";
+
+        data.forEach(w => {
+          const div = document.createElement("div");
+          div.className = "wish-item";
+          div.innerHTML = `<strong>${w.name}</strong>${w.message}<br><small>${w.time}</small>`;
+          list.appendChild(div);
+        });
+
+      } catch(err){
+        console.log(err);
+      }
+    }
+    loadWishes();
+
+    // SUBMIT WISH
+    document.getElementById("wishForm").addEventListener("submit", async(e)=>{
+      e.preventDefault();
+      const name = wishName.value.trim();
+      const message = wishMessage.value.trim();
+
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({mode:"wish", name, message})
+      });
+
+      showToast("Ucapan dihantar 💙");
+      wishForm.reset();
+      loadWishes();
     });
 
-  } catch (err) { console.log(err); }
-}
+    // SUBMIT RSVP
+    document.getElementById("rsvpForm").addEventListener("submit", async(e)=>{
+      e.preventDefault();
 
-function addWishToDOM(name, message) {
-  const list = document.getElementById("wishesList");
-  const cloneList = document.getElementById("wishesClone");
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          mode:"rsvp",
+          name:rsvpName.value,
+          pax:rsvpPax.value,
+          status:rsvpStatus.value,
+          remark:rsvpRemark.value
+        })
+      });
 
-  const item = document.createElement("div");
-  item.className = "wish-item";
-  item.innerHTML = `
-    <div class="wish-message">${message}</div>
-    <div class="wish-name">${name}</div>`;
-
-  list.appendChild(item);
-  cloneList.appendChild(item.cloneNode(true));
-}
-
-loadWishes();
-
-// SUBMIT WISH
-document.getElementById("wishForm").addEventListener("submit", async (e)=>{
-  e.preventDefault();
-
-  const name = document.getElementById("wishName").value.trim();
-  const message = document.getElementById("wishMessage").value.trim();
-
-  await fetch(SCRIPT_URL, {
-    method:"POST",
-    mode:"no-cors",
-    body: JSON.stringify({ mode:"wish", name, message })
-  });
-
-  addWishToDOM(name, message);
-  showToast("Ucapan berjaya dihantar 💙");
-
-  document.getElementById("wishForm").reset();
-});
-</script>
-
+      showToast("RSVP dihantar 💙");
+      rsvpForm.reset();
+    });
+  </script>
 </body>
 </html>
