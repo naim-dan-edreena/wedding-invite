@@ -21,6 +21,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: #2f3650;
+    z-index: 9999;
   }
 
   .center-box h2 {
@@ -65,26 +66,45 @@
     top: 0;
     width: 50%;
     height: 100vh;
-    background: rgba(250,250,255,0.92);
-    backdrop-filter: blur(6px);
     z-index: 9998;
     transition: transform 1.4s ease-in-out;
+
+    /* ADD VISIBLE DOOR STYLING */
+    background: linear-gradient(
+      180deg,
+      rgba(240,244,255,0.92),
+      rgba(222,229,245,0.92)
+    );
+    border: 1px solid rgba(160,168,190,0.55);
+    backdrop-filter: blur(8px);
+
+    /* OPTIONAL floral texture (soft transparent) */
+    background-image:
+      linear-gradient(
+        rgba(240,244,255,0.88),
+        rgba(222,229,245,0.88)
+      ),
+      url("flowertexture.png"); /* OPTIONAL – upload file */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   #leftDoor {
     left: 0;
-    border-right: 1px solid rgba(160,168,190,0.8);
+    border-right: 2px solid rgba(160,168,190,0.65);
   }
 
   #rightDoor {
     right: 0;
-    border-left: 1px solid rgba(160,168,190,0.8);
+    border-left: 2px solid rgba(160,168,190,0.65);
   }
 
-  /* ANIMATION TO OPEN */
+  /* DOOR OPEN ANIMATION */
   .open-left {
     transform: translateX(-100%);
   }
+
   .open-right {
     transform: translateX(100%);
   }
@@ -93,7 +113,7 @@
 
 <body>
 
-<!-- DOOR PANELS -->
+<!-- LEFT & RIGHT DOORS -->
 <div id="leftDoor" class="door"></div>
 <div id="rightDoor" class="door"></div>
 
@@ -119,14 +139,14 @@
 <script>
   document.getElementById("openBtn").onclick = function () {
 
-    // Animate doors
+    // Open both doors
     document.getElementById("leftDoor").classList.add("open-left");
     document.getElementById("rightDoor").classList.add("open-right");
 
-    // Wait for animation, then tell index.html to continue
+    // Wait until animation finished
     setTimeout(() => {
       window.parent.postMessage("OPEN_INVITATION", "*");
-    }, 1400);
+    }, 1500);
   };
 </script>
 
